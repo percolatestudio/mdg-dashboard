@@ -35,8 +35,12 @@ Meteor.methods({
   
   stopSimulation: function() {
     stopSimulation();
+  },
+  
+  makeSale: function() {
+    simulateSale();
   }
 });
 
 // just start straight away for now
-Meteor.call('startSimulation');
+// Meteor.call('startSimulation');

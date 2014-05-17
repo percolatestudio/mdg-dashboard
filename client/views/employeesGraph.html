@@ -1,0 +1,9 @@
+<template name="employeesGraph">
+  <svg width="800" height="400">
+    {{#if subsReady}}
+      {{#each salesData}}
+        <rect width="{{width}}" height="40" y="{{y}}" />
+      {{/each}}
+    {{/if}}
+  </svg>
+</template>
