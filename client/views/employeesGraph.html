@@ -1,7 +1,7 @@
 <template name="employeesGraph">
   <svg width="800" height="400">
     {{#if subsReady}}
-      {{#each salesData}}
+      {{#each employees}}
         <rect width="{{width}}" height="40" y="{{y}}" />
       {{/each}}
     {{/if}}

@@ -6,19 +6,16 @@ var totalSales = function(employee) {
   return _.reduce(prices, function(sum, p) { return p + sum }, 0);
 }
 
-// first version, single interpolation over *all* data
-var rawData = function() {
-  return Employees.find().map(function(employee, i) {
-    return {
-      index: i,
-      employee: employee,
-      sales: totalSales(employee)
-    }
-  });
+var salesInterpolators = {};
+var salesInterpolator = function(employee) {
+  if (! salesInterpolators[employee._id]) {
+    salesInterpolators[employee._id] = new InterpolatedFunction(function() {
+      return totalSales(employee);
+    });
+  }
+  
+  return salesInterpolators[employee._id].call()
 }
-
-window.data = new InterpolatedFunction(rawData, _.identity,
-  interpolateArrayByField('sales'));
 
 Meteor.setInterval(function() {
   Session.set('tick', new Date);
@@ -30,13 +27,17 @@ Template.employeesGraph.helpers({
     Session.get('tick');
     return DDP._allSubscriptionsReady();
   },
-  salesData: function() { 
-    return data.call();
+
+  employees: function() {
+    return Employees.find({}, {sort: {name: 1}});
   },
+  
   width: function() {
-    return this.sales / 10;
+    return salesInterpolator(this) / 10;
   },
+  
   y: function() {
-    return this.index * 50;
+    var index = Employees.find({name: {$lt: this.name}}).count();
+    return index * 50;
   }
 })
