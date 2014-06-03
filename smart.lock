@@ -1,0 +1,30 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "factory": {},
+      "fake": {},
+      "interpolated-helper": {
+        "git": "https://github.com/tmeasday/interpolated-helper",
+        "branch": "master"
+      }
+    },
+    "packages": {
+      "factory": {
+        "git": "https://github.com/percolatestudio/meteor-factory.git",
+        "tag": "v0.3.5",
+        "commit": "ac5876ffe993f35c52101f7898f5fcf35065002f"
+      },
+      "fake": {
+        "git": "https://github.com/subhog/meteor-fake.git",
+        "tag": "v0.3.4",
+        "commit": "e5393ddad6fbee5638e5c430666693828b403abc"
+      },
+      "interpolated-helper": {
+        "git": "https://github.com/tmeasday/interpolated-helper",
+        "branch": "master",
+        "commit": "79c90ea8fed60cdc36c4e9e1e8e1961a0c8ea873"
+      }
+    }
+  }
+}

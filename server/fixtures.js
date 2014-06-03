@@ -1,4 +1,4 @@
-var N_PRODUCTS = 30;
+var N_PRODUCTS = 6;
 var N_EMPLOYEES = 5;
 
 if (! Products.find().count()) {

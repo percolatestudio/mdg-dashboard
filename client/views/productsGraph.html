@@ -1,0 +1,12 @@
+<template name="productsGraph">
+  <svg width="800" height="400">
+    {{#if subsReady}}
+      {{#each products}}
+        <g transform="translate(0,{{y}})">
+          <rect width="{{width}}" height="40" x="0" y="0" fill='#ddd' />
+          <text x="10" y="20" style="alignment-baseline: middle">{{name}}</text>
+        </g>
+      {{/each}}
+    {{/if}}
+  </svg>
+</template>

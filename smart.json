@@ -1,0 +1,9 @@
+{
+  "packages": {
+    "factory": {},
+    "fake": {},
+    "interpolated-helper": {
+      "git": "https://github.com/tmeasday/interpolated-helper"
+    }
+  }
+}

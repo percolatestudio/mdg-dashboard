@@ -1,9 +1,11 @@
 <template name="employeesGraph">
-  <svg width="800" height="400">
-    {{#if subsReady}}
-      {{#each employees}}
-        <rect width="{{width}}" height="40" y="{{y}}" />
-      {{/each}}
-    {{/if}}
+  <svg width="600" height="600">
+    <g transform="translate(300,300)">
+      {{#with sales}}
+        {{#each segments}}
+          <path d="{{path}}" fill="{{color}}"/>
+        {{/each}}
+      {{/with}}
+    </g>
   </svg>
 </template>
