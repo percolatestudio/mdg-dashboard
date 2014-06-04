@@ -19,6 +19,9 @@ Template.employeesGraph.helpers({
   sales: animate(getSales, {time: 400}),
   
   segments: function() {
+    // XXX: deal with data not being loaded yet
+    if (! _.any(this, function(s) { return s !== 0 })) return [];
+    
     return _.map(layout(this), function(o, index) {
       return _.extend(o, {index: index});
     });
