@@ -1,0 +1,22 @@
+/* Greyscale */
+@color-empty: white;
+@color-raw: #e8e8e8;
+@color-rare: #ccc;
+@color-medium-rare: #aaa;
+@color-medium: #666;
+@color-medium-well: #444;
+@color-well: #333;
+
+
+/* Graphs */
+@color-sales-line: #6b89ad; //pastel bluev
+@color-sales-area: #c8dffb; //light blue
+
+@color-items: #305d8e; //each color bar is changed via the 'lighten' less mixin
+
+@color-actor1: #275e98; //blue
+@color-actor2: #e1623b; //orange
+@color-actor3: #cf4735; //red
+@color-actor4: #5e924d; //green
+
+@color-indicator: #950200; //crimson opacity values: 70%, 30%

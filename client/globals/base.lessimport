@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent; /* For some Androids */
+}
+
+html, button, input, textarea, select {
+  font-family: 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: @color-raw;
+  color: @color-well;
+  font-size: 16px;
+}
+
+/* Default type layout */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .3em;
+  padding: 2.5em 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.subtext {
+  color: @color-medium-rare;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+
+.container {
+  //layout
+  @column: 5.55555%;
+  @media screen and (min-width: 30em) { margin: 0 2*@column; }
+  @media screen and (min-width: 50em) { margin: 0 3*@column; }
+  position: relative;
+
+  //clearfix
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after { clear: both; }
+
+  //styling
+  background: @color-empty;
+}
+
+.wrapper-sales,
+.wrapper-items,
+.wrapper-seller {
+  padding: 2em; //32px
+  border-bottom: 1px solid @color-raw;
+}
+
+.wrapper-sales {
+
+}
+
+.wrapper-items,
+.wrapper-seller {
+
+  //side-by-side view on tablet/web screens
+  @media screen and (min-width: 50em) {
+    border-bottom: none;
+    float: left;
+    width: 50%;
+  }
+}
+
+.wrapper-seller {
+  //show border-left on large screens
+  @media screen and (min-width: 50em) { border-left: 1px solid @color-raw; }
+
+  .legend {
+    padding: 0 10% 0 20%;
+    overflow: hidden;
+    > div {
+      float: left;
+      width: 49%;
+      font-size: 14px;
+      margin-bottom: .25rem;
+    }
+    .color-swatch {
+      display: inline-block;
+      border-radius: 1rem;
+      height: 1rem;
+      width: 1rem;
+      vertical-align: middle;
+      margin-right: .5rem;
+      &.actor1 { background: @color-actor1; }
+      &.actor2 { background: @color-actor2; }
+      &.actor3 { background: @color-actor3;}
+      &.actor4 { background: @color-actor4; }
+    }
+    .count {
+      color: @color-medium-rare;
+    }
+  }
+}
+
+.sidebar {
+  //show only when the screen is wide enough
+  display: none;
+  @media screen and (min-width: 50em) { display: block; }
+
+  height: 100%;
+  left: 100%;
+  overflow: hidden;
+  padding-left: 1.25em;
+  position: absolute;
+  top: 0;
+  width: 25%;
+
+  .subtext {
+    padding-bottom: .25em;
+  }
+
+  ul li {
+    color: @color-rare;
+    font-size: 13px;
+    line-height: 1.5rem;
+    padding-right: 1.25em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+
+
+
+
