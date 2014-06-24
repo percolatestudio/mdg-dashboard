@@ -1,9 +1,17 @@
 var COLORS = ['red', 'green', 'blue', 'yellow', 'orange'];
 
 var layout = d3.layout.pie().sort(null);
-var arc = d3.svg.arc().innerRadius(80).outerRadius(150);
+var arc = d3.svg.arc().innerRadius(70).outerRadius(100);
 
-var totalSales = function(employee) {
+var totalSales = function() {
+  var prices = Sales.find().map(function(s) {
+    return Products.findOne(s.productId).price;
+  })
+
+  return _.reduce(prices, function(sum, p) { return p + sum }, 0);
+}
+
+var salesForEmployee = function(employee) {
   var prices = Sales.find({employeeId: employee._id}).map(function(s) {
     return Products.findOne(s.productId).price;
   })
@@ -12,11 +20,27 @@ var totalSales = function(employee) {
 }
 
 var getSales = function() {
-  return Employees.find({}, {sort: {name: 1}}).map(totalSales);
+  var total = totalSales()
+  
+  return Employees.find({}, {sort: {name: 1}})
+    .map(function(employee, index) {
+      var stat = {
+        employee: employee,
+        sales: salesForEmployee(employee),
+        index: index
+      };
+      stat.fraction = stat.sales / total;
+      return stat;
+    });
 }
 
 Template.employeesGraph.helpers({
-  sales: animate(getSales, {time: 400}),
+  salesByEmployee: getSales,
+  
+  // XXX: better name
+  animated: animate(function() { 
+    return _.pluck(this, 'sales');
+  }, {time: 400}),
   
   segments: function() {
     // XXX: deal with data not being loaded yet

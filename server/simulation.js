@@ -4,11 +4,11 @@ var simulateSale = function() {
   var product = Random.choice(Products.find().fetch());
   var employee = Random.choice(Employees.find().fetch());
   
-  console.log(employee.name, 'sold a', product.name);
-  Factory.create('sale', {
+  var sale = Factory.create('sale', {
     productId: product._id,
     employeeId: employee._id
   });
+  console.log(employee.name, 'sold', sale.amount, product.name);
 }
 
 var SALES_INTERVAL = 2 * 1000;
@@ -43,4 +43,4 @@ Meteor.methods({
 });
 
 // just start straight away for now
-// Meteor.call('startSimulation');
+Meteor.call('startSimulation');

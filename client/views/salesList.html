@@ -1,7 +1,7 @@
 <template name="salesList">
   <ul>
     {{#each sales}}
-      <li>{{employee.name}} sold a {{product.name}}!</li>
+      <li>{{employee.name}} sold {{pluralize amount product.name}}</li>
     {{/each}}
   </ul>
 </template>

@@ -1,11 +1,20 @@
 <template name="employeesGraph">
-  <svg width="600" height="600">
-    <g transform="translate(300,300)">
-      {{#with sales}}
-        {{#each segments}}
-          <path d="{{path}}" fill="{{color}}"/>
-        {{/each}}
-      {{/with}}
-    </g>
-  </svg>
+  {{#with salesByEmployee}}
+    <figure>
+      <svg width="300" height="300">
+        <g transform="translate(150,150)">
+          {{#with animated}}
+            {{#each segments}}
+              <path d="{{path}}" fill="{{color}}"/>
+            {{/each}}
+          {{/with}}
+        </g>
+      </svg>
+    </figure>
+    <div class="legend">
+      {{#each this}}
+        <div><span class="color-swatch actor{{index}}"></span>{{employee.name}} <span class="count">({{formatPercentage fraction}}%)</span></div>
+      {{/each}}
+    </div>
+  {{/with}}
 </template>
