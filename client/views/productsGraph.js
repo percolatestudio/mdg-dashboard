@@ -3,7 +3,7 @@ var HEIGHT = 40;
 
 // XXX: do we want to calculate this ONCE on the outside?
 var maxSales = function() {
-  return _.max(Products.find().map(productSales)) || 1;
+  return _.max(Products.find().map(productSales));
 }
 
 var productSales = function(product) {
@@ -21,7 +21,7 @@ Template.productsGraph.helpers({
   },
   
   productWidth: animate(function() { 
-    return productSales(this) / maxSales() * WIDTH;
+    return (productSales(this) / maxSales() * WIDTH) || 0;
   }),
   
   y: function() {
