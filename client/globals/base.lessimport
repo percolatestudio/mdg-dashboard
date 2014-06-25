@@ -76,7 +76,32 @@ h2 {
 }
 
 .wrapper-sales {
+  position: relative;
+  height: 300px;
 
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #D9FFFE;
+    
+    .area {
+      stroke: green;
+      fill: green;
+    }
+    
+    .line {
+      stroke: blue;
+      fill: none;
+    }
+    
+    line {
+      stroke: gray;
+      stroke-width: 1;
+    }
+  }
 }
 
 .wrapper-items,
