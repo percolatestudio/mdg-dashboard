@@ -60,7 +60,7 @@ var calculateScales = function(points, width, height) {
   
   
   return {
-    x: d3.time.scale().range([0, width])
+    x: d3.time.scale().range([-30, width + 100])
          .domain([timeRange.get('start'), timeRange.get('end')]),
     y: d3.scale.linear().range([height, 0]).domain([0, d3.max(yValues)])
   }
