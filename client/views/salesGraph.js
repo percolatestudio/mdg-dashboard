@@ -16,10 +16,17 @@ var updateTimeRange = function() {
   timeRange.set('end', now);
 }
 
-updateTimeRange();
-Meteor.setInterval(function() {
+var loop = function() {
   updateTimeRange();
-}, 1000);
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+
+// updateTimeRange();
+// Meteor.setInterval(function() {
+//   updateTimeRange();
+// }, 200);
 
 
 
