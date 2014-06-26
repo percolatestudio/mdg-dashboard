@@ -11,14 +11,15 @@ var simulateSale = function() {
   console.log(employee.name, 'sold', sale.amount, product.name);
 }
 
-var SALES_INTERVAL = 2 * 1000;
+var SALES_INTERVAL = 1 * 1000;
 var timeout;
 var simulateSales = function() {
   simulateSale();
   
   timeout = Meteor.setTimeout(function() {
     simulateSales();
-  }, randomDistribution(SALES_INTERVAL))
+  }, SALES_INTERVAL);
+  // }, randomDistribution(SALES_INTERVAL))
 }
 
 var stopSimulation = function() {
@@ -44,3 +45,8 @@ Meteor.methods({
 
 // just start straight away for now
 Meteor.call('startSimulation');
+
+Meteor.setInterval(function() {
+  console.log('resetting sales');
+  Sales.remove({});
+}, 60 * 2 * 1000);

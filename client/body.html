@@ -1,0 +1,31 @@
+<template name="body">
+  <h1>Acme Analytics</h1>
+
+  <div class="container cf">
+
+    <div class="wrapper-sales">
+      <h2>Sales</h2>
+      <span class="subtext">By Quantity</span>
+      {{> salesGraph width=salesGraphWidth height=235}}
+    </div>
+
+    <div class="wrapper-items">
+      <h2>Items</h2>
+      <span class="subtext">Total Sales</span>
+      <figure>
+        {{> productsGraph}}
+      </figure>
+    </div>
+
+    <div class="wrapper-seller">
+      <h2>Seller</h2>
+      <span class="subtext">Distribution</span>
+      {{> employeesGraph}}
+    </div>
+
+    <div class="sidebar">
+      <div class="subtext">Activity</div>
+      {{> salesList}}
+    </div>
+  </div>
+</template>

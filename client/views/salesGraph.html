@@ -1,12 +1,12 @@
 <template name="salesGraph">
   {{#with svgData}}
-    <svg width="{{dimensions.width}}" height="{{dimensions.height}}">
-      <g class="chart" transform="translate(0, {{dimensions.padding.top}})">
+    <svg width="{{width}}" height="{{height}}">
+      <g class="chart" transform="translate(0, {{padding.top}})">
         <path class="area" d="{{area}}" />
         <path class="line" d="{{line}}" />
         <circle class="dot" cx="{{dot.x}}" cy="{{dot.y}}" r="3" />
 
-        <g class="x-axis" transform="translate(0, {{dimensions.chartHeight}})">
+        <g class="x-axis" transform="translate(0, {{chartHeight}})">
           {{#each xTicks}}
             <line x1="{{x}}" x2="{{x}}" y1="0" y2="5" />
             <text x="{{x}}" y="0" dy="24" text-anchor="middle">
@@ -15,8 +15,8 @@
           {{/each}}
         </g>
       
-        <line x1="0" x2="{{dimensions.width}}" 
-          y1="{{dimensions.chartHeight}}" y2="{{dimensions.chartHeight}}" />
+        <line x1="0" x2="{{width}}" 
+          y1="{{chartHeight}}" y2="{{chartHeight}}" />
       </g>
 
       <g class="y-axis" transform="translate(15, 0)">

@@ -79,13 +79,14 @@ h2 {
   position: relative;
   height: 300px;
 
+  h2, span {
+    z-index: 1;
+  }
+
   svg {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #D9FFFE;
     
     .area {
       stroke: green;

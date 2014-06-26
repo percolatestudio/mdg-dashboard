@@ -1,5 +1,5 @@
-var WIDTH = 540;
-var HEIGHT = 235;
+// var WIDTH = 540;
+// var HEIGHT = 235;
 var PADDING = {
   top: 20,
   right: 15,
@@ -7,6 +7,10 @@ var PADDING = {
   left: 0
 }
 var Y_TICK_COUNT = 4;
+
+// var timeRange = new ReactiveDict();
+
+
 
 var salesOverTime = function() {
   return Sales.find(
@@ -93,8 +97,8 @@ var yTicks = function(scales) {
 
 Template.salesGraph.helpers({
   svgData: function() {
-    var chartWidth = WIDTH - PADDING.left - PADDING.right;
-    var chartHeight = HEIGHT - PADDING.top - PADDING.bottom;
+    var chartWidth = this.width - PADDING.left - PADDING.right;
+    var chartHeight = this.height - PADDING.top - PADDING.bottom;
     
     var points = salesOverTime();
     
@@ -112,17 +116,12 @@ Template.salesGraph.helpers({
         y: scales.y(dotPoint.y)
       },
       yTicks: yTicks(scales),
-      xTicks: xTicks(points, scales)
-    }
-  },
-  
-  dimensions: function() {
-    return {
-      width: WIDTH,
-      height: HEIGHT,
-      chartHeight: HEIGHT - PADDING.top - PADDING.bottom,
+      xTicks: xTicks(points, scales),
+      width: this.width,
+      height: this.height,
+      chartHeight: chartHeight,
       padding: PADDING
-    };
+    }
   }
 });
 
