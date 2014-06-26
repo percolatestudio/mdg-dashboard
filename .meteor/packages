@@ -11,3 +11,4 @@ factory
 interpolated-helper
 d3
 less
+reactive-dict

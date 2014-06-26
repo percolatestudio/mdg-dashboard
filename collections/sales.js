@@ -4,5 +4,5 @@ Factory.define('sale', Sales, {
   // product: Factory.get('product'),
   // employee: Factory.get('employee'),
   when: function() { return new Date; },
-  amount: function() { return Math.floor(randomBetween(1,20)); }
+  amount: function() { return Math.floor(randomDistribution(12)); }
 });

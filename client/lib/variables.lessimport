@@ -14,9 +14,9 @@
 
 @color-items: #305d8e; //each color bar is changed via the 'lighten' less mixin
 
-@color-actor1: #275e98; //blue
-@color-actor2: #e1623b; //orange
-@color-actor3: #cf4735; //red
-@color-actor4: #5e924d; //green
+@color-actor0: #275e98; //blue
+@color-actor1: #e1623b; //orange
+@color-actor2: #cf4735; //red
+@color-actor3: #5e924d; //green
 
 @color-indicator: #950200; //crimson opacity values: 70%, 30%

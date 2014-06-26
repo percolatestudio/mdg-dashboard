@@ -1,31 +1,38 @@
 <template name="salesGraph">
   {{#with svgData}}
-    <svg width="{{width}}" height="{{height}}">
+    <svg class="graph-sales" width="{{width}}" height="{{height}}">
+      <defs>
+        <linearGradient id="area-gradient" x1="20%" y1="0%" x2="0%" y2="100%">
+          <stop class="start" offset="0%" />
+          <stop class="end" offset="100%" />
+        </linearGradient>
+      </defs>
+
       <g class="chart" transform="translate(0, {{padding.top}})">
-        <path class="area" d="{{area}}" />
+        <path class="area" d="{{area}}" fill="url(#area-gradient)" />
         <path class="line" d="{{line}}" />
-        <circle class="dot" cx="{{dot.x}}" cy="{{dot.y}}" r="3" />
+        <circle class="dot" cx="{{dot.x}}" cy="{{dot.y}}" r="2.5" />
 
         <g class="x-axis" transform="translate(0, {{chartHeight}})">
           {{#each xTicks}}
-            <line x1="{{x}}" x2="{{x}}" y1="0" y2="5" />
-            <text x="{{x}}" y="0" dy="24" text-anchor="middle">
+            <line x1="{{x}}" x2="{{x}}" y1="0" y2="6" />
+            <text x="{{x}}" y="0" dy="20" text-anchor="middle">
               {{label}}
             </text>
           {{/each}}
         </g>
       
-        <line x1="0" x2="{{width}}" 
+        <line class="underline" x1="0" x2="{{width}}" 
           y1="{{chartHeight}}" y2="{{chartHeight}}" />
-      </g>
 
-      <g class="y-axis" transform="translate(15, 0)">
-        {{#each yTicks}}
-          <line x1="0" x2="5" y1="{{y}}" y2="{{y}}"/>
-          <text x="10" y="{{y}}" alignment-baseline="central">
-            {{label}}
-          </text>
-        {{/each}}
+        <g class="y-axis" transform="translate(15, 0)">
+          {{#each yTicks}}
+            <line x1="0" x2="6" y1="{{y}}" y2="{{y}}"/>
+            <text x="10" y="{{y}}" alignment-baseline="central">
+              {{label}}
+            </text>
+          {{/each}}
+        </g>
       </g>
     </svg>
   {{/with}}

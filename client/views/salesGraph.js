@@ -1,20 +1,31 @@
-// var WIDTH = 540;
-// var HEIGHT = 235;
 var PADDING = {
-  top: 20,
+  top: 80,
   right: 15,
   bottom: 30,
   left: 0
 }
 var Y_TICK_COUNT = 4;
+var X_TICK_INCREMENT = 5; //seconds
+var DURATION = 30; //seconds
 
-// var timeRange = new ReactiveDict();
+window.timeRange = new ReactiveDict();
+
+var updateTimeRange = function() {
+  var now = new Date();
+  timeRange.set('start', d3.time.second.offset(new Date(), -DURATION));
+  timeRange.set('end', now);
+}
+
+updateTimeRange();
+Meteor.setInterval(function() {
+  updateTimeRange();
+}, 1000);
 
 
 
 var salesOverTime = function() {
   return Sales.find(
-    {when: {$gte: d3.time.minute.offset(new Date(), -1)}},
+    {when: {$gte: timeRange.get('start')}},
     {sort: {when: 1}}).map(function(sale) {
       return {
         x: sale.when,
@@ -40,13 +51,11 @@ var calculateScales = function(points, width, height) {
     yValues.push(point.y);
   });
   
-  var now = new Date();
-  var before = d3.time.minute.offset(now, -1)
   
   return {
-    x: d3.time.scale().range([0, width]).domain([before, now]),
-    //x: d3.time.scale().range([0, width]).domain(d3.extent(xValues)),
-    y: d3.scale.linear().range([height, 0]).domain(d3.extent(yValues))
+    x: d3.time.scale().range([0, width])
+         .domain([timeRange.get('start'), timeRange.get('end')]),
+    y: d3.scale.linear().range([height, 0]).domain([0, d3.max(yValues)])
   }
 }
 
@@ -73,13 +82,13 @@ var xTicks = function(points, scales) {
   var ticks = [];
   var format = d3.time.format("%M:%S");
   
-  _.each(points, function(point) {
-    var seconds = new Date(point.x).getSeconds();
+  _.each(scales.x.ticks(DURATION), function(tickTime) {
+    var seconds = new Date(tickTime).getSeconds();
      
-    if (seconds % 5 === 0)
+    if (seconds % X_TICK_INCREMENT === 0)
       ticks.push({
-        x: scales.x(point.x),
-        label: format(point.x)
+        x: scales.x(tickTime),
+        label: format(tickTime)
       });
   });
   
@@ -101,12 +110,14 @@ Template.salesGraph.helpers({
     var chartHeight = this.height - PADDING.top - PADDING.bottom;
     
     var points = salesOverTime();
-    
+
     if (! points.length)
       return;
+    // points = [];
     
     var scales = calculateScales(points, chartWidth, chartHeight);
     var dotPoint = _.last(points);
+    // var dotPoint = {x: 0, y: 0};
     
     return {
       area: pathForArea(points, scales, chartHeight),
@@ -120,6 +131,7 @@ Template.salesGraph.helpers({
       width: this.width,
       height: this.height,
       chartHeight: chartHeight,
+      chartWidth: chartWidth,
       padding: PADDING
     }
   }

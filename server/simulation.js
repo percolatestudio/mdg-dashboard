@@ -38,6 +38,11 @@ Meteor.methods({
     stopSimulation();
   },
   
+  resetSimulation: function() {
+    console.log('resetting sales');
+    Sales.remove({});
+  },
+  
   makeSale: function() {
     simulateSale();
   }
@@ -47,6 +52,5 @@ Meteor.methods({
 Meteor.call('startSimulation');
 
 Meteor.setInterval(function() {
-  console.log('resetting sales');
-  Sales.remove({});
-}, 60 * 2 * 1000);
+  Meteor.call('resetSimulation');
+}, 60 * 1000);

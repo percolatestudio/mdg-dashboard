@@ -40,6 +40,10 @@ h2 {
   font-weight: 300;
 }
 
+svg {
+  display: block;
+}
+
 .subtext {
   color: @color-medium-rare;
   font-size: 13px;
@@ -75,6 +79,49 @@ h2 {
   border-bottom: 1px solid @color-raw;
 }
 
+
+svg.graph-products {
+  margin-left: -2em;
+  margin-top: 2em;
+  
+  text {
+    font-size: 14px;
+    fill: #FFF;
+    stroke: none;
+  }
+
+  g:nth-child(1) rect { fill: rgba(48, 93, 142, 1); }
+  g:nth-child(2) rect { fill: rgba(48, 93, 142, .9); }
+  g:nth-child(3) rect { fill: rgba(48, 93, 142, .8); }
+  g:nth-child(4) rect { fill: rgba(48, 93, 142, .7); }
+  g:nth-child(5) rect { fill: rgba(48, 93, 142, .6); }
+  g:nth-child(6) rect { fill: rgba(48, 93, 142, .5); }
+}
+
+svg.graph-employees {
+  .segment {
+    &.actor0 { 
+      fill: @color-actor0; 
+      stroke: @color-actor0; 
+    }
+    
+    &.actor1 { 
+      fill: @color-actor1; 
+      stroke: @color-actor1; 
+    }
+    
+    &.actor2 { 
+      fill: @color-actor2; 
+      stroke: @color-actor2; 
+    }
+    
+    &.actor3 { 
+      fill: @color-actor3; 
+      stroke: @color-actor3; 
+    }
+  }
+}
+
 .wrapper-sales {
   position: relative;
   height: 300px;
@@ -83,24 +130,59 @@ h2 {
     z-index: 1;
   }
 
-  svg {
+  svg.graph-sales {
     position: absolute;
     top: 0;
     left: 0;
     
-    .area {
-      stroke: green;
-      fill: green;
+    #area-gradient {
+      .start {
+        stop-color: rgb(200, 223, 251);
+        stop-opacity: 1;
+      }
+      
+      .end {
+        stop-color: rgb(242, 248, 249);
+        stop-opacity: 1;
+      }
+    }
+    
+    .line, .dot {
+      stroke: #6B89AD;
+      fill: #6B89AD;
     }
     
     .line {
-      stroke: blue;
+      stroke-width: 1.25;
       fill: none;
     }
     
     line {
       stroke: gray;
       stroke-width: 1;
+    }
+    
+    .underline {
+      stroke: #EEE;
+    }
+    
+    text {
+      font-size: 11px;
+      stroke: none;
+    }
+    
+    .x-axis {
+      line { stroke: #CCC; }
+      text { fill: rgba(0, 0, 0, .5); }
+    }
+    
+    .y-axis {
+      line { stroke: rgba(0, 0, 0, .2); }
+      text { fill: rgba(0, 0, 0, .4); }
+
+      line:first-of-type, text:first-of-type {
+        display: none;
+      }
     }
   }
 }
@@ -136,10 +218,10 @@ h2 {
       width: 1rem;
       vertical-align: middle;
       margin-right: .5rem;
+      &.actor0 { background: @color-actor0; }
       &.actor1 { background: @color-actor1; }
       &.actor2 { background: @color-actor2; }
-      &.actor3 { background: @color-actor3;}
-      &.actor4 { background: @color-actor4; }
+      &.actor3 { background: @color-actor3; }
     }
     .count {
       color: @color-medium-rare;

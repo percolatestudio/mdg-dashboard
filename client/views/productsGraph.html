@@ -1,9 +1,9 @@
 <template name="productsGraph">
-  <svg width="{{width}}" height="{{height}}">
+  <svg class="graph-products" width="{{width}}" height="{{height}}">
     {{#each products}}
       <g transform="translate(0,{{y}})">
         <rect width="{{productWidth}}" height="40" x="0" y="0" fill='#ddd' />
-        <text x="10" y="20" style="alignment-baseline: middle">{{name}}</text>
+        <text x="2.2em" y="20" style="alignment-baseline: middle">{{name}}</text>
       </g>
     {{/each}}
   </svg>

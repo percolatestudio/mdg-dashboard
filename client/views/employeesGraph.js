@@ -1,7 +1,7 @@
 var COLORS = ['red', 'green', 'blue', 'yellow', 'orange'];
 
 var layout = d3.layout.pie().sort(null);
-var arc = d3.svg.arc().innerRadius(70).outerRadius(100);
+var arc = d3.svg.arc().innerRadius(80).outerRadius(120);
 
 var totalSales = function() {
   var prices = Sales.find().map(function(s) {
