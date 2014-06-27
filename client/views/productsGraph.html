@@ -3,7 +3,8 @@
     {{#each products}}
       <g transform="translate(0,{{y}})">
         <rect width="{{productWidth}}" height="40" x="0" y="0" fill='#ddd' />
-        <text x="2.2em" y="20" style="alignment-baseline: middle">{{name}}</text>
+        <text x="2.2em" y="20" style="fill: {{color productWidth}};">{{name}}</text>
+        <text x="18em" y="20" >{{sales}}</text>
       </g>
     {{/each}}
   </svg>

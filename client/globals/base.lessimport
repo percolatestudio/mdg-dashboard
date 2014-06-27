@@ -86,8 +86,9 @@ svg.graph-products {
   
   text {
     font-size: 14px;
-    fill: #FFF;
+    fill: #ccc;
     stroke: none;
+    alignment-baseline: middle;
   }
 
   g:nth-child(1) rect { fill: rgba(48, 93, 142, 1); }
