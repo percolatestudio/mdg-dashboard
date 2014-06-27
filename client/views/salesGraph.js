@@ -100,17 +100,12 @@ Template.salesGraph.helpers({
 
     if (! points.length)
       return;
-    
+
     var scales = calculateScales(points, chartWidth, chartHeight);
-    var dotPoint = _.last(points);
     
     return {
       area: pathForArea(points, scales, chartHeight),
       line: pathForLine(points, scales),
-      dot: {
-        x: scales.x(dotPoint.x),
-        y: scales.y(dotPoint.y)
-      },
       yTicks: yTicks(scales),
       xTicks: xTicks(points, scales),
       width: this.width,

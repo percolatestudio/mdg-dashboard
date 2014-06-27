@@ -148,13 +148,8 @@ svg.graph-employees {
       }
     }
     
-    .line, .dot {
-      stroke: #6B89AD;
-      fill: #6B89AD;
-    }
-    
     .line {
-      stroke-width: 1.25;
+      stroke: #6B89AD;
       fill: none;
     }
     
