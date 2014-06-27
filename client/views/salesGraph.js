@@ -4,11 +4,12 @@ var PADDING = {
   bottom: 30,
   left: 0
 }
+
 var Y_TICK_COUNT = 4;
 var X_TICK_INCREMENT = 5; //seconds
 var DURATION = 30; //seconds
 
-window.timeRange = new ReactiveDict();
+var timeRange = new ReactiveDict();
 
 var updateTimeRange = function() {
   var now = new Date();
@@ -23,13 +24,6 @@ var loop = function() {
 
 requestAnimationFrame(loop);
 
-// updateTimeRange();
-// Meteor.setInterval(function() {
-//   updateTimeRange();
-// }, 200);
-
-
-
 var salesOverTime = function() {
   return Sales.find(
     {when: {$gte: timeRange.get('start')}},
@@ -41,28 +35,14 @@ var salesOverTime = function() {
     });
 }
 
-// var salesOverTime = function() {
-//   return Sales.find({}, {sort: {when: 1}, limit: 60}).map(function(sale) {
-//     return {
-//       x: sale.when,
-//       y: sale.amount
-//     }
-//   });
-// }
-
 var calculateScales = function(points, width, height) {
-  var xValues = [], yValues = [];
-  
-  points.forEach(function(point) {
-    xValues.push(point.x);
-    yValues.push(point.y);
-  });
-  
-  
   return {
-    x: d3.time.scale().range([-60, width + 60])
+    // render the start/end of the graph 180px off screen so 
+    x: d3.time.scale().range([-180, width + 180])
          .domain([timeRange.get('start'), timeRange.get('end')]),
-    y: d3.scale.linear().range([height, 0]).domain([0, d3.max(yValues)])
+    y: d3.scale.linear().range([height, 0]).domain([0, 22])
+    // y: d3.scale.linear().range([height, 0])
+    //      .domain([0, d3.max(points, function(p) {return p.y;})])
   }
 }
 
@@ -120,11 +100,9 @@ Template.salesGraph.helpers({
 
     if (! points.length)
       return;
-    // points = [];
     
     var scales = calculateScales(points, chartWidth, chartHeight);
     var dotPoint = _.last(points);
-    // var dotPoint = {x: 0, y: 0};
     
     return {
       area: pathForArea(points, scales, chartHeight),
