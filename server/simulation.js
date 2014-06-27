@@ -11,7 +11,7 @@ var simulateSale = function() {
   console.log(employee.name, 'sold', sale.amount, product.name);
 }
 
-var SALES_INTERVAL = 1 * 1000;
+var SALES_INTERVAL = 3 * 1000;
 var timeout;
 var simulateSales = function() {
   simulateSale();
